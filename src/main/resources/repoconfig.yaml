@@ -1,0 +1,8 @@
+#Mongodb
+
+spring:
+  data:
+    mongodb:
+      database: packman
+      host: localhost
+      port: 27017
