@@ -1,0 +1,46 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head :: head"></head>
+<body>
+<div class=" uk-background-cover uk-background-primary uk-light uk-padding uk-position-cover uk-flex uk-flex-middle">
+    <div class="uk-container">
+        <h2> Triage requests </h2>
+        <div th:if="${triage} != null" class="uk-child-width-1-2@m" uk-grid>
+            <div th:each="triage : ${triage}">
+                <div class="uk-card uk-border-rounded uk-card-default uk-card-body">
+                    <h2 class="uk-card-title" th:text="'Subject: ' + ${triage.subject}"></h2>
+                    <p th:text="'User name: ' + ${triage.users}"></p>
+                    <p class="uk-text-small" th:text="'Email: ' + ${triage.email}"></p>
+                    <p class="uk-text-small" th:if="${triage.desc} != null" th:text="'Desc: ' + ${triage.desc}"></p>
+                    <form class="uk-form-horizontal uk-text-muted" th:action="@{/dsa}">
+                        <div class="uk-margin">
+                            <div class="uk-form-label">Priority</div>
+                            <div class="uk-margin">
+                                <label class="uk-form-label" for="form-horizontal-select">Select</label>
+                                <div class="uk-form-controls">
+                                    <select class="uk-select" id="form-horizontal-select">
+                                        <option th:text="Priority"></option>
+                                        <option th:text="Major"></option>
+                                        <option th:text="Low"></option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="uk-margin">
+                            <button type="submit" class="uk-button uk-button-primary">Save</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div th:if="${triage} == null">
+            Null
+        </div>
+    </div>
+</div>
+</div>
+
+</div>
+</body>
+</html>

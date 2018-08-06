@@ -1,12 +1,13 @@
 package com.project.packman.packman.service;
 
+import com.project.packman.packman.error.RoleNotFoundException;
 import com.project.packman.packman.model.Users;
 
 import java.util.List;
 
 public interface UserRegistrationService {
 
-    Users saveUser(Users users);
+    Users saveUser(Users users) throws RoleNotFoundException;
 
     List<Users> findAll();
 }

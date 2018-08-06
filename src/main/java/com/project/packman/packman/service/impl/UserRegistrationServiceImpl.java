@@ -1,6 +1,8 @@
 package com.project.packman.packman.service.impl;
 
+import com.project.packman.packman.error.RoleNotFoundException;
 import com.project.packman.packman.model.Roles;
+import com.project.packman.packman.model.RolesType.RolesType;
 import com.project.packman.packman.model.Users;
 import com.project.packman.packman.repository.RoleRepository;
 import com.project.packman.packman.repository.UsersRepository;
@@ -16,7 +18,11 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.*;
+import javax.validation.Valid;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
@@ -32,9 +38,9 @@ public class UserRegistrationServiceImpl implements UserRegistrationService, Use
     private UsersRepository userRepository;
 
     @Override
-    public Users saveUser(Users users) {
+    public Users saveUser(@Valid Users users) throws RoleNotFoundException,UsernameNotFoundException {
         users.setPassword(passwordEncoder.encode(users.getPassword()));
-        Roles userRoles = roleRepository.findByRole("ADMIN");
+        Roles userRoles = roleRepository.findByRole(String.valueOf(RolesType.ROLE_DISPATCHER)).orElseThrow(() -> new RoleNotFoundException("dsa"));
         users.setRoles(new HashSet<>(Collections.singletonList(userRoles)));
         return userRepository.save(users);
     }
@@ -44,8 +50,7 @@ public class UserRegistrationServiceImpl implements UserRegistrationService, Use
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
         Users user = userRepository.findByUsername(s).orElseThrow(() -> new UsernameNotFoundException("User not found"));
         List<GrantedAuthority> authorities = getUserAuthority(user.getRoles());
-
-        return new User(user.getUsername(),user.getPassword(),authorities);
+        return new User(user.getUsername(), user.getPassword(), authorities);
     }
 
     private List<GrantedAuthority> getUserAuthority(Set<Roles> userRoles) {

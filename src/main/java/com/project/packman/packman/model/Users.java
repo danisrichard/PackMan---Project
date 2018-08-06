@@ -7,7 +7,6 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import javax.validation.constraints.NotNull;
 import java.util.Set;
 
-
 @Document(collection = "users")
 public class Users {
 

@@ -1,5 +1,6 @@
 package com.project.packman.packman.controller.userAccessSection;
 
+import com.project.packman.packman.error.RoleNotFoundException;
 import com.project.packman.packman.model.Users;
 import com.project.packman.packman.service.UserRegistrationService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,12 +22,11 @@ public class UserRegistrationController {
     public String registration(Model model) {
         Users user = new Users();
         model.addAttribute("user", user);
-
         return "/log-and-reg-section/registration";
     }
 
     @RequestMapping(value = "/registration", method = RequestMethod.POST)
-    public String createNewUser(@Valid Users user, BindingResult bindingResult, Model model) {
+    public String createNewUser(@Valid Users user, BindingResult bindingResult, Model model) throws RoleNotFoundException {
         if (!bindingResult.hasErrors()) {
             userService.saveUser(user);
             model.addAttribute("successMessage", "User has been registered successfully");
