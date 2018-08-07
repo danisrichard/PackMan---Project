@@ -1,0 +1,17 @@
+<div th:fragment="article" xmlns:th="http://www.w3.org/1999/xhtml">
+    <article th:each="comments : ${request.getComments()}" class="uk-comment uk-margin uk-comment-primary" >
+        <header class="uk-comment-header uk-grid-medium uk-flex-middle" uk-grid>
+            <div class="uk-width-expand">
+                <h4 class="uk-comment-title uk-margin-remove" style="color:black;"><a class="uk-link-reset" href="#">Author</a>
+                </h4>
+                <ul style="color:black;" class="uk-comment-meta uk-subnav uk-subnav-divider uk-margin-remove-top">
+                    <li th:text="${comments.date}"></li>
+                </ul>
+            </div>
+        </header>
+        <div class="uk-comment-body">
+            <p th:text="${comments.comment}">
+            </p>
+        </div>
+    </article>
+</div>

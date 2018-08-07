@@ -13,23 +13,19 @@
                     <p th:text="'User name: ' + ${triage.users}"></p>
                     <p class="uk-text-small" th:text="'Email: ' + ${triage.email}"></p>
                     <p class="uk-text-small" th:if="${triage.desc} != null" th:text="'Desc: ' + ${triage.desc}"></p>
-                    <form class="uk-form-horizontal uk-text-muted" th:action="@{/dsa}">
-                        <div class="uk-margin">
-                            <div class="uk-form-label">Priority</div>
-                            <div class="uk-margin">
-                                <label class="uk-form-label" for="form-horizontal-select">Select</label>
-                                <div class="uk-form-controls">
-                                    <select class="uk-select" id="form-horizontal-select">
-                                        <option th:text="Priority"></option>
-                                        <option th:text="Major"></option>
-                                        <option th:text="Low"></option>
-                                    </select>
-                                </div>
+                    <form class="uk-form-horizontal" th:action="@{/triage/{requestId}(requestId = ${triage.id})}">
+                        <fieldset class="uk-fieldset">
+                            <div class="uk-margin" style="color:black;">
+                                <select class="uk-select" name="priority">
+                                    <option value="high">High</option>
+                                    <option value="medium">Medium</option>
+                                    <option value="low">Minor</option>
+                                </select>
                             </div>
-                        </div>
-                        <div class="uk-margin">
-                            <button type="submit" class="uk-button uk-button-primary">Save</button>
-                        </div>
+                            <div class="uk-margin">
+                                <button type="submit" class="uk-button uk-button-primary">Save</button>
+                            </div>
+                        </fieldset>
                     </form>
                 </div>
             </div>

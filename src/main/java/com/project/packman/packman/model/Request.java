@@ -1,6 +1,6 @@
 package com.project.packman.packman.model;
 
-import com.project.packman.packman.model.RolesType.Priorites;
+import com.project.packman.packman.model.RolesType.Priorities;
 import com.project.packman.packman.model.RolesType.Status;
 import org.hibernate.validator.constraints.Length;
 import org.springframework.data.annotation.Id;
@@ -8,6 +8,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 import java.util.Set;
 
 @Document
@@ -23,10 +24,19 @@ public class Request {
     @Length(min = 3, max = 10)
     private String subject;
     private String desc;
-    private Set<Priorites> priorites;
+    private Set<Priorities> priorities;
     private Status statuses;
+    private List<Comments> comments;
 
     public Request() {
+    }
+
+    public List<Comments> getComments() {
+        return comments;
+    }
+
+    public void setComments(String comments) {
+        this.comments.add(new Comments(comments));
     }
 
     public Status getStatuses() {
@@ -37,12 +47,12 @@ public class Request {
         this.statuses = statuses;
     }
 
-    public Set<Priorites> getPriorites() {
-        return priorites;
+    public Set<Priorities> getPriorities() {
+        return priorities;
     }
 
-    public void setPriorites(Set<Priorites> priorites) {
-        this.priorites = priorites;
+    public void setPriorities(Set<Priorities> priorities) {
+        this.priorities = priorities;
     }
 
     public String getId() {
@@ -93,7 +103,7 @@ public class Request {
                 ", email='" + email + '\'' +
                 ", subject='" + subject + '\'' +
                 ", desc='" + desc + '\'' +
-                ", priorites=" + priorites +
+                ", priorites=" + priorities +
                 ", statuses=" + statuses +
                 '}';
     }

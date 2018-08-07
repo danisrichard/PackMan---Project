@@ -22,11 +22,12 @@ public class RequestServiceImpl implements RequestService {
     @Override
     @Transactional
     public Request saveNewRequest(@Valid Request request) {
+        request.setStatuses(Status.NEW_REQUESTS);
         return requestRepository.save(request);
     }
 
     @Override
-    public synchronized HashMap<Status, List<Request>> getAllRequest() {
+    public synchronized HashMap<Status, List<Request>> getAllRequestGroupByStatus() {
         List<Request> requestList = requestRepository.findAll();
         return requestList.stream().collect(Collectors.groupingBy(Request::getStatuses, HashMap::new, Collectors.toList()));
     }

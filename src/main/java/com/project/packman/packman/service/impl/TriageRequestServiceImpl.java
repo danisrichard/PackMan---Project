@@ -2,7 +2,7 @@ package com.project.packman.packman.service.impl;
 
 import com.project.packman.packman.error.RequestNotFoundException;
 import com.project.packman.packman.model.Request;
-import com.project.packman.packman.model.RolesType.Priorites;
+import com.project.packman.packman.model.RolesType.Priorities;
 import com.project.packman.packman.repository.RequestRepository;
 import com.project.packman.packman.service.TriageRequestService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,9 +23,9 @@ public class TriageRequestServiceImpl implements TriageRequestService {
     }
 
     @Override
-    public Request validateRequest(String id, Priorites priorites) throws RequestNotFoundException {
+    public Request validateRequest(String id, Priorities priorities) throws RequestNotFoundException {
         Request request = requestRepository.findById(id).orElseThrow(() -> new RequestNotFoundException("dsa"));
-        request.setPriorites(Collections.singleton(priorites));
+        request.setPriorities(Collections.singleton(priorities));
         return request;
     }
 

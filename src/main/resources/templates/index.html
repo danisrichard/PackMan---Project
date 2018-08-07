@@ -3,28 +3,38 @@
       xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragments/head :: head"></head>
 <body>
-<div class=" uk-background-cover uk-background-primary uk-light uk-padding uk-position-cover uk-flex uk-flex-middle">
-    <div class="uk-container">
-        <h2> Office matters </h2>
+<div class="uk-background-primary uk-position-cover ">
+    <div th:replace="fragments/navbar"></div>
+    <div class="uk-container uk-margin-top uk-text-center">
+        <h2 class="uk-light"> Office matters </h2>
         <div th:if="${requests} != null" class="uk-child-width-1-3@m uk-grid-small uk-grid-match" uk-grid>
             <div th:each="map : ${requests} ">
                 <div th:each="mapEntry : ${map}">
                     <div class="uk-card uk-border-rounded uk-card-default uk-card-body">
+                        <p class="uk-card-title" th:text="${mapEntry.key.name()}"></p>
+                        <div th:each=" request : ${mapEntry.value}">
                             <div>
-                                <div class="uk-card uk-border-rounded uk-card-default uk-card-hover uk-card-small uk-card-body">
-                                    <h3 class="uk-card-title">Small</h3>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                                <div class="uk-card uk-margin uk-border-rounded uk-card-default uk-card-hover uk-card-small uk-card-body">
+                                    <h3 th:text="${request.subject}" class="uk-card-title"></h3>
+                                    <p th:text="${request.desc}">Lorem ipsum dolor sit amet, consectetur adipiscing
+                                        elit, sed do eiusmod tempor
                                         incididunt ut labore et dolore magna aliqua.</p>
+                                    <a th:href="@{'comment/' + ${request.id}}">
+                                        <button class="uk-border-rounded uk-button uk-button-primary">Add comment!</button>
+                                    </a>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+            <div th:if="${requests} == null">
+                <h2> No Requests Represent! </h2>
+                <a>
+                    <button>Add new requests!</button>
+                </a>
+            </div>
         </div>
     </div>
-</div>
-
-</div>
 </body>
 </html>

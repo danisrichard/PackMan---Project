@@ -10,6 +10,6 @@ import java.util.List;
 public interface RequestService {
 
     Request saveNewRequest(Request request);
-    HashMap<Status, List<Request>> getAllRequest();
+    HashMap<Status, List<Request>> getAllRequestGroupByStatus();
     Request getRequestById(String id) throws RequestNotFoundException;
 }

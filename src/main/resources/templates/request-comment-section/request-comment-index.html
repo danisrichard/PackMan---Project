@@ -1,0 +1,23 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head :: head"></head>
+<body>
+<div class=" uk-background-cover uk-background-muted uk-light uk-padding uk-position-cover uk-flex uk-flex-middle">
+    <div th:replace="fragments/navbar"></div>
+    <div class="uk-container">
+        <h2></h2>
+        <div th:if="${request} == null"> No value represent!</div>
+        <div th:if="${request} != null">
+            <div class="uk-card uk-card-default uk-card-body uk-width-xlarge">
+                <h3 class="uk-card-title" th:text="${request.subject}"></h3>
+                <div th:if="${request.getComments()} != null">
+                    <article
+                             th:replace="request-comment-section/request-comment"></article>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
