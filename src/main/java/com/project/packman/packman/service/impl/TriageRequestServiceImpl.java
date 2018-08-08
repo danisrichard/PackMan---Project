@@ -28,5 +28,4 @@ public class TriageRequestServiceImpl implements TriageRequestService {
         request.setPriorities(Collections.singleton(priorities));
         return request;
     }
-
 }

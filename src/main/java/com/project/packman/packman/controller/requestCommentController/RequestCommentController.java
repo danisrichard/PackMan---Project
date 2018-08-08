@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequestMapping("/comment")
@@ -20,10 +21,17 @@ public class RequestCommentController {
     @Autowired
     private RequestCommentService commentService;
 
-    @RequestMapping(value = "/{id}",method = RequestMethod.GET)
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public String getRequestCommentById(Model model, @PathVariable(value = "id") String id) throws RequestNotFoundException {
         logger.info(id);
-        model.addAttribute("request",commentService.findById(id));
+        model.addAttribute("request", commentService.findById(id));
         return "request-comment-section/request-comment-index";
+    }
+
+    @RequestMapping(value = "/add/{id}", method = RequestMethod.GET)
+    public String addNewCommentToRequest(@PathVariable(value = "id") String id, @RequestParam("textArea") String textArea) throws RequestNotFoundException {
+        commentService.addNewComment(id,textArea);
+        logger.info("id: {} , text: {}", id, textArea);
+        return "redirect:/comment/" + id;
     }
 }

@@ -18,6 +18,9 @@ public enum Priorities {
     }
 
     public static Priorities getPriority(String priorty) throws PrioritesNotRepresent {
-        return EnumSet.allOf(Priorities.class).stream().filter(prio -> prio.name().equalsIgnoreCase(priorty)).findFirst().orElse(null);
+        return EnumSet.allOf(Priorities.class).stream()
+                .filter(prio -> prio.name().equalsIgnoreCase(priorty))
+                .findFirst()
+                .orElseThrow(() -> new PrioritesNotRepresent(" Not represent"));
     }
 }

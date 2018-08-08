@@ -1,0 +1,31 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head :: head"></head>
+<body>
+<div class=" uk-background-cover uk-background-muted uk-padding uk-position-cover uk-flex uk-flex-middle">
+    <div th:replace="fragments/navbar"></div>
+    <div class="uk-container">
+        <h2>Status</h2>
+        <div th:if="${request} == null"> No value represent!</div>
+        <div th:if="${request} != null">
+            <div class="uk-card uk-card-default uk-card-body uk-width-xlarge">
+                <h3 class="uk-card-title" th:text="${request.subject}"></h3>
+                <p th:text="'Current status: ' + ${request.statuses}"></p>
+                <form th:action="@{/status/__${request.id}__/add}">
+                    <fieldset class="uk-fieldset">
+                        <legend class="uk-legend">Set status!</legend>
+                        <select class="uk-select" name="requestStatus">
+                            <option value="NEW_REQUESTS">NEW_REQUESTS</option>
+                            <option value="IN_PROGRESS">IN_PROGRESS</option>
+                            <option value="RESOLVED">RESOLVED</option>
+                        </select>
+                        <button class="uk-button uk-button-primary" type="submit">Send it!</button>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

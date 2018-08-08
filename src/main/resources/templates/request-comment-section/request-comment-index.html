@@ -3,7 +3,7 @@
       xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragments/head :: head"></head>
 <body>
-<div class=" uk-background-cover uk-background-muted uk-light uk-padding uk-position-cover uk-flex uk-flex-middle">
+<div class=" uk-background-cover uk-background-muted uk-padding uk-position-cover uk-flex uk-flex-middle">
     <div th:replace="fragments/navbar"></div>
     <div class="uk-container">
         <h2></h2>
@@ -13,8 +13,17 @@
                 <h3 class="uk-card-title" th:text="${request.subject}"></h3>
                 <div th:if="${request.getComments()} != null">
                     <article
-                             th:replace="request-comment-section/request-comment"></article>
+                            th:replace="request-comment-section/request-comment"></article>
                 </div>
+                <form th:action="@{/comment/add/{id}(id=${request.id})}">
+                <fieldset class="uk-fieldset" >
+                    <legend class="uk-legend">Add new comment</legend>
+                    <div class="uk-margin">
+                        <textarea class="uk-textarea" rows="5" name="textArea" placeholder="Textarea"></textarea>
+                    </div>
+                    <button class="uk-button uk-button-primary" type="submit">Send it!</button>
+                </fieldset>
+                </form>
             </div>
         </div>
     </div>

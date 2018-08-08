@@ -7,7 +7,6 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 @Repository
-public interface RequestRepository extends MongoRepository<Request,String> {
+public interface RequestRepository extends MongoRepository<Request,String>,CustomQueryRequestRepository {
     Optional<Request> findById(String id);
-
 }

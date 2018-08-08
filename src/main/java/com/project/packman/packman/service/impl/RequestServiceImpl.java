@@ -29,7 +29,8 @@ public class RequestServiceImpl implements RequestService {
     @Override
     public synchronized HashMap<Status, List<Request>> getAllRequestGroupByStatus() {
         List<Request> requestList = requestRepository.findAll();
-        return requestList.stream().collect(Collectors.groupingBy(Request::getStatuses, HashMap::new, Collectors.toList()));
+        return requestList.stream()
+                .collect(Collectors.groupingBy(Request::getStatuses, HashMap::new, Collectors.toList()));
     }
 
     @Override

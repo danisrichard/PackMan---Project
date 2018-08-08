@@ -19,9 +19,16 @@
                                     <p th:text="${request.desc}">Lorem ipsum dolor sit amet, consectetur adipiscing
                                         elit, sed do eiusmod tempor
                                         incididunt ut labore et dolore magna aliqua.</p>
-                                    <a th:href="@{'comment/' + ${request.id}}">
-                                        <button class="uk-border-rounded uk-button uk-button-primary">Add comment!</button>
-                                    </a>
+                                    <div class="uk-button-group">
+                                        <a th:href="@{'comment/' + ${request.id}}">
+                                            <button class="uk-border-rounded uk-button-small uk-button uk-button-primary">Comment!
+                                            </button>
+                                        </a>
+                                        <a th:href="@{'status/' + ${request.id}}">
+                                            <button class="uk-border-rounded uk-button-small uk-button uk-button-primary">Set status!
+                                            </button>
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
