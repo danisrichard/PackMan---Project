@@ -1,4 +1,4 @@
-package com.project.packman.packman.service.impl;
+package com.project.packman.packman.service.impl.requestService;
 
 import com.project.packman.packman.error.RequestNotFoundException;
 import com.project.packman.packman.error.StatusNotFoundException;

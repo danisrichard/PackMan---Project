@@ -40,7 +40,7 @@ public class UserRegistrationServiceImpl implements UserRegistrationService, Use
     @Override
     public Users saveUser(@Valid Users users) throws RoleNotFoundException,UsernameNotFoundException {
         users.setPassword(passwordEncoder.encode(users.getPassword()));
-        Roles userRoles = roleRepository.findByRole(String.valueOf(RolesType.ROLE_DISPATCHER)).orElseThrow(() -> new RoleNotFoundException("dsa"));
+        Roles userRoles = roleRepository.findByRole(String.valueOf(RolesType.ROLE_DISPATCHER)).orElseThrow(() -> new RoleNotFoundException("Role not found in registration."));
         users.setRoles(new HashSet<>(Collections.singletonList(userRoles)));
         return userRepository.save(users);
     }

@@ -1,6 +1,5 @@
 package com.project.packman.packman.controller.homePage;
 
-import com.project.packman.packman.controller.triageController.TriageRequestController;
 import com.project.packman.packman.service.RequestService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

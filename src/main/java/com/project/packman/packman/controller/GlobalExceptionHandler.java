@@ -10,8 +10,6 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-import java.lang.ref.ReferenceQueue;
-
 @ControllerAdvice
 public class GlobalExceptionHandler {
 
@@ -25,21 +23,21 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(RoleNotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
     public @ResponseBody
-    String handleRoleNotFound(final RoleNotFoundException roleNotFound){
+    String handleRoleNotFound(final RoleNotFoundException roleNotFound) {
         return roleNotFound.getMessage();
     }
 
     @ExceptionHandler(PrioritesNotRepresent.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
     public @ResponseBody
-    String handlePrioritesNotFound(final PrioritesNotRepresent prioritesNotRepresent){
+    String handlePrioritesNotFound(final PrioritesNotRepresent prioritesNotRepresent) {
         return prioritesNotRepresent.getMessage();
     }
 
     @ExceptionHandler(RequestNotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
     public @ResponseBody
-    String handleRequestNotFound(final RequestNotFoundException requestNotFound){
+    String handleRequestNotFound(final RequestNotFoundException requestNotFound) {
         return requestNotFound.getMessage();
     }
 }

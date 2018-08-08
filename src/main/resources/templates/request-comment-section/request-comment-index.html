@@ -10,16 +10,15 @@
         <div th:if="${request} == null"> No value represent!</div>
         <div th:if="${request} != null">
             <div class="uk-card uk-card-default uk-card-body uk-width-xlarge">
-                <h3 class="uk-card-title" th:text="${request.subject}"></h3>
-                <div th:if="${request.getComments()} != null">
-                    <article
-                            th:replace="request-comment-section/request-comment"></article>
+                <h3 class="uk-card-title" th:text="'Subject: ' + ${request.subject}"></h3>
+                <div th:if="${request.comments} != null">
+                    <div th:replace="request-comment-section/request-comment"></div>
                 </div>
-                <form th:action="@{/comment/add/{id}(id=${request.id})}">
+                <form autocomplete="off" th:action="@{/comment/add/{id}(id=${request.id})}" th:object="${newComment}">
                 <fieldset class="uk-fieldset" >
                     <legend class="uk-legend">Add new comment</legend>
                     <div class="uk-margin">
-                        <textarea class="uk-textarea" rows="5" name="textArea" placeholder="Textarea"></textarea>
+                        <textarea class="uk-textarea" rows="5" th:field="*{comment}" placeholder="Textarea"></textarea>
                     </div>
                     <button class="uk-button uk-button-primary" type="submit">Send it!</button>
                 </fieldset>

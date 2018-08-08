@@ -8,7 +8,9 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 @Document
@@ -35,8 +37,8 @@ public class Request {
         return comments;
     }
 
-    public void setComments(String comments) {
-        this.comments.add(new Comments(comments));
+    public void setComments(Comments comment) {
+        comments.add(comment);
     }
 
     public Status getStatuses() {

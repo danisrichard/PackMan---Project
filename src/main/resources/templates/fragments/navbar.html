@@ -3,12 +3,14 @@
     <div uk-dropdown>
         <ul class="uk-nav uk-dropdown-nav">
             <li class="uk-active"><a href="#">Active</a></li>
-            <li><a href="#">Item</a></li>
-            <li class="uk-nav-header">Header</li>
-            <li><a href="#">Item</a></li>
-            <li><a href="#">Item</a></li>
+            <li><a th:href="@{/}">Back to Request</a></li>
+            <li class="uk-nav-header">Triage Section</li>
+            <li><a th:href="@{/triage}">Triage</a></li>
             <li class="uk-nav-divider"></li>
-            <li><a href="#">Item</a></li>
+            <li class="uk-nav-header">New Request Section</li>
+            <li><a th:href="@{/request/new}">New Request!</a></li>
+            <li class="uk-nav-divider"></li>
+            <li><a th:href="@{/logout}">Logout</a></li>
         </ul>
     </div>
 </div>

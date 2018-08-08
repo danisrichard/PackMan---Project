@@ -1,4 +1,4 @@
-package com.project.packman.packman.service.impl;
+package com.project.packman.packman.service.impl.requestService;
 
 import com.project.packman.packman.error.RequestNotFoundException;
 import com.project.packman.packman.model.Request;
@@ -24,7 +24,7 @@ public class TriageRequestServiceImpl implements TriageRequestService {
 
     @Override
     public Request validateRequest(String id, Priorities priorities) throws RequestNotFoundException {
-        Request request = requestRepository.findById(id).orElseThrow(() -> new RequestNotFoundException("dsa"));
+        Request request = requestRepository.findById(id).orElseThrow(() -> new RequestNotFoundException("This request not represent"));
         request.setPriorities(Collections.singleton(priorities));
         return request;
     }

@@ -4,6 +4,7 @@ import com.project.packman.packman.model.Request;
 import com.project.packman.packman.model.RolesType.Priorities;
 import com.project.packman.packman.model.RolesType.Status;
 import com.project.packman.packman.repository.RequestRepository;
+import com.project.packman.packman.service.impl.requestService.RequestServiceImpl;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;

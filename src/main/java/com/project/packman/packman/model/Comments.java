@@ -2,18 +2,24 @@ package com.project.packman.packman.model;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
-import java.time.LocalDate;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 
 public class Comments {
+
+    private static final String DATE_FORMAT = "yyyy/MM/dd HH:mm:ss";
+    private static final DateFormat dateFormat = new SimpleDateFormat(DATE_FORMAT);
+    private static final DateTimeFormatter dateFormat8 = DateTimeFormatter.ofPattern(DATE_FORMAT);
 
     @NotEmpty
     @NotNull
     private String comment;
-    private LocalDate date;
+    private Date date;
 
-    public Comments(@NotEmpty @NotNull String comment) {
-        this.comment = comment;
-        this.date = LocalDate.now();
+    public Comments() {
+        this.date = new Date();
     }
 
     public String getComment() {
@@ -24,7 +30,7 @@ public class Comments {
         this.comment = comment;
     }
 
-    public LocalDate getDate() {
-        return date;
+    public String getDate() {
+        return dateFormat.format(this.date);
     }
 }

@@ -4,6 +4,7 @@
 <head th:replace="fragments/head :: head"></head>
 <body>
 <div class=" uk-background-cover uk-background-primary uk-light uk-padding uk-position-cover uk-flex uk-flex-middle">
+    <div th:replace="fragments/navbar"></div>
     <div class="uk-container">
         <h2> Triage requests </h2>
         <div th:if="${triage} != null" class="uk-child-width-1-2@m" uk-grid>

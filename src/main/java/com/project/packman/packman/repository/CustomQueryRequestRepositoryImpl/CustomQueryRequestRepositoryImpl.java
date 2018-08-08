@@ -30,6 +30,9 @@ public class CustomQueryRequestRepositoryImpl implements CustomQueryRequestRepos
 
     @Override
     public void addCommentToRequestById(String id, Comments comments) {
-        
+        Query query = new Query(Criteria.where("id").is(id));
+        Update update = new Update();
+        update.addToSet("comments",comments);
+        mongoTemplate.update(Request.class).matching(query).apply(update).first();
     }
 }
