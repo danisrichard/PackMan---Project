@@ -1,0 +1,66 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head :: head"></head>
+<body>
+<div class="uk-background-primary uk-position-cover ">
+    <div th:replace="fragments/navbar"></div>
+    <div class="uk-container uk-margin-top uk-text-center">
+        <h2 class="uk-light"> Office matters </h2>
+        <div th:if="${teamList} != null" class="uk-child-width-1-1@m ">
+            <div class="uk-card uk-card-default uk-card-body uk-width-1-2@m">
+                <h3 class="uk-card-title">Default</h3>
+                <table class="uk-table uk-table-striped">
+                    <thead>
+                    <tr>
+                        <th>Team Name</th>
+                        <th>Activity (minutes)</th>
+                        <th>Calories</th>
+                    </tr>
+                    </thead>
+                    <tbody th:each=" listOfTeam : ${teamList}">
+                    <tr>
+                        <td th:text="${listOfTeam.name}"></td>
+                    </tr>
+                    <tr>
+                        <td>Table Data</td>
+                    </tr>
+                    <tr>
+                        <td>Table Data</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="uk-card uk-card-default uk-card-body uk-width-1-2@m">
+                <h3 class="uk-card-title">Default</h3>
+                <table class="uk-table uk-table-striped">
+                    <thead>
+                    <tr>
+                        <th>Athlete</th>
+                        <th>Activity (minutes)</th>
+                        <th>Calories</th>
+                    </tr>
+                    </thead>
+                    <tbody th:each=" listOfTeam : ${teamList}">
+                    <tr>
+                        <td th:text="${listOfTeam.name}"></td>
+                    </tr>
+                    <tr>
+                        <td>Table Data</td>
+                    </tr>
+                    <tr>
+                        <td>Table Data</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div th:if="${teamList} == null">
+            <h2> No Team Represent! </h2>
+            <a>
+                <button>Add new team!</button>
+            </a>
+        </div>
+    </div>
+</body>
+</html>

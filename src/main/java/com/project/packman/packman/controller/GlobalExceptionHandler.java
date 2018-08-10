@@ -1,8 +1,8 @@
 package com.project.packman.packman.controller;
 
-import com.project.packman.packman.error.PrioritesNotRepresent;
-import com.project.packman.packman.error.RequestNotFoundException;
-import com.project.packman.packman.error.RoleNotFoundException;
+import com.project.packman.packman.error.OfficeMatters.PrioritesNotRepresent;
+import com.project.packman.packman.error.OfficeMatters.RequestNotFoundException;
+import com.project.packman.packman.error.OfficeMatters.RoleNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.ControllerAdvice;

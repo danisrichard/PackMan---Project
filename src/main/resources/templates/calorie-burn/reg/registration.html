@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head :: head"></head>
+<body>
+<!--<div id="navbar" class="uk-padding-small" th:replace="fragments/navbar::navbar"></div>-->
+<div class="uk-background-cover uk-section uk-section-muted">
+    <div th:replace="fragments/navbar"></div>
+    <div class="uk-container">
+        <div class="uk-margin" uk-grid>
+            <div>
+                <div class="uk-border-rounded uk-card uk-card-secondary uk-card-body">
+                    <h2 class="uk-card-title">Registration new team</h2>
+                </div>
+            </div>
+        </div>
+        <div class="uk-border-rounded uk-card uk-card-default uk-card-body">
+            <div class="uk-container">
+                <div class="uk-text-center">
+                    <form class="uk-form-horizontal" th:action="@{/registration/new}" th:object="${team}"
+                          th:method="POST">
+                        <legend class="uk-legend">Team Reg Form</legend>
+                        <div class="uk-margin">
+                            <div class="uk-inline">
+                                <input class="uk-input uk-form-width-large" type="text" placeholder="TeamName"
+                                       th:field="*{teamName}">
+                            </div>
+                            <td th:if="${#fields.hasErrors('teamName')}" th:errors="*{teamName}">TeamName Error</td>
+                            <legend class="uk-legend">Your team member!</legend>
+
+                            <div th:each="user, i : *{userList}">
+                                <div class="uk-inline">
+                                    <input class="uk-input uk-form-width-large" type="text" placeholder="User name"
+                                        th:field="*{userList[__${i.index}__].name}" >
+                                </div>
+                            </div>
+                            <button type="submit" class="uk-border-rounded uk-margin uk-button uk-button-primary">
+                                Submit!
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
